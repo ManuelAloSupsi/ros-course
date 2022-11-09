@@ -7,6 +7,7 @@
 
 
 
+
 # Homework before the course
 Before the course it would be preferable to perform the following steps:
   * Installl WLS
@@ -64,7 +65,6 @@ Before the course it would be preferable to perform the following steps:
   
   <div align="center"><h3>:muscle::muscle:Now you are ready for the course:muscle::muscle:</h3></div
   
-  
 # The Course
 
   ## Instantiate the image
@@ -72,9 +72,12 @@ Before the course it would be preferable to perform the following steps:
   <p align="center">
   <img src="Public/Image/sull3.png" style="width: 80%;">
   </p>
-  The <b> Run a new container</b> appears. Expand the <b>Optional settings</b> menu and compile it as follows:
+  The <b> Run a new container</b> windows appears. Expand the <b>Optional settings</b> menu and compile it as follows:
+
   * <b>Container name</b>: RosCourse
-  * <b>Host port</b>: 8080
+  * <b>Host port</b>: 8080 
+
+
 
 
   <p align="center">
