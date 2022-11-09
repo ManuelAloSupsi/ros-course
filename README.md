@@ -5,60 +5,79 @@
 
 # Description
 
-Requirements:
-* WLS
-* Docker Desktop
-* Dowload image
-
-# Preparazioni corso ROS
-
-## Docker
-
-### Installazione wls
-
-Open PowerShell with administrator privileges and run the follow command:
-```bash
-wls –intall
-```
-Restart your computer to finish the WSL installation on Windows.
-
-Always usign PowerShell as administrator update the wls
-```bash
-wsl --update
-```
-and install the Debian distribution
-```bash
-wsl –install -d Debian
-```
-To check to the success of the installation type the following command to verify the version of the distro:
-```bash
-wsl -l -v
-```
-Confirm Debian with distro version is 2.
-
-### Installazione Docker Desktop
-Installa Docker Desktop dal sito ufficiale :point_right:
-<a href="https://www.docker.com/products/docker-desktop/">
-<img src="Public/Image/vertical-logo-monochromatic.webp" style="width: 50px;">
-</p>
-
-:warning: **Remember to run Docker Desktop as Amministrator**: Be very careful here!
 
 
+# Homework before the course
+Before the course it would be preferable to perform the following steps:
+  * Installl WLS
+  * Install Docker Desktop
+  * Download of ros-course image
 
 
-### Download of ros-course image
+  ## Install WLS
 
-docker pull manuelalosupsi/ros-course
+  Open PowerShell with administrator privileges and run the follow command:
+  ```bash
+  wls --intall
+  ```
+  Restart your computer to finish the WSL installation on Windows.
 
-# Course
+  Always usign PowerShell as administrator update the wls
+  ```bash
+  wsl --update
+  ```
+  install the Debian distribution
+  ```bash
+  wsl --install -d Debian
+  ```
+  and move the distribution to distro 2
+  ```bash
+  wsl --set-vertion Debian 2
+  ```
+  To check to the success of the installation type the following command to verify the version of the distro:
+  ```bash
+  wsl -l -v
+  ```
+  Confirm that the distribution is Debian with distro version 2.
 
-# Execute the image
+  ## Installazione Docker Desktop
+  Install Docker Desktoo from the official Website :point_right:
+  <a href="https://www.docker.com/products/docker-desktop/">
+  <img src="Public/Image/vertical-logo-monochromatic.webp" style="width: 50px">
+  </a>
+
+  :warning: **Remember to run Docker Desktop as Amministrator**
 
 
-```bash
-docker run -it --rm -p 8080:8080 manuelalosupsi/ros-course
-```
+  ## Download of ros-course image
+  Launch the PowerShell as administrator and execute the following command to pull the image from the Docker Hub
+  ```bash
+  docker pull manuelalosupsi/ros-course
+  ```
+  <p align="center">
+  <img src="Public/Image/sull2.png" style="width: 80%;">
+  </p>
+  If the operation was successful you can find the <b>manuelalosupsi/ros-course</b> under <em>Image</em> tab of the Docker Desktop
+  <div align="center"><h3>:muscle::muscle:Now you are ready for the course:muscle::muscle:</h3></div
+  
+  
+# The Course
+
+  ## Instantiate the image
+  <p align="center">
+  <img src="Public/Image/sull3.png" style="width: 80%;">
+  </p>
+  
+  <p align="center">
+  <img src="Public/Image/ImageInstant.png" style="width: 80%;">
+  </p>
+  
+  
+  If it doesn't work? :tired_face: You can try to pull again the image and instantiate it by using the following command:
+  ```bash
+  docker run -it --rm -p 8080:8080 manuelalosupsi/ros-course
+  ```
+  
 
 
 http://localhost:8080/vnc.html
