@@ -8,9 +8,11 @@
   ## Table of Contents  
   * [Homework before the course](#homework)  
   * [The course](#course)     
-    * [Publiscer - Subscriber](#pub)  
-    * [Service - Client](#service)  
-    * [Actions](#action)  
+    * [Turtlesim](#turtlesim)
+    * [Create a Workspace](#workspace)
+    * [Publisher - Subscriber](#pub)  
+    * [Service Server - Service Client](#service)  
+    * [Action Server - Action Client](#action)  
 
   
 <a name="homework"/>
@@ -115,17 +117,28 @@ Before the course it would be preferable to perform the following steps:
 
 # The Course
 
+  <a name="turtlesim"/>
+  
+  ## Turtlesim
+  
+
+  
+  <a name="workspac"/>
+  
+  ## Create a Workspace
+ 
+
   <a name="pub"/>
   
-  ## Instantiate the image
+  ## Publisher - Subscriber
   
   <a name="service"/>
   
-  ## Instantiate the image
+  ## Service Server - Service Client
   
   <a name="action"/>
   
-  ## Instantiate the image
+  ## Action Server - Action Client
 
 
     
