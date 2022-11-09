@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="Public/Image/logo-SUPSI.png" style="width: 300px;">
-  <img src="Public/Image/ros-logo-white.png" style="width: 300px;">
+  <img src="Public/Image/logo-SUPSI-black.png" style="width: 300px;">
+  <img src="Public/Image/ros-logo-black.png" style="width: 300px;">
 </p>
 
 # Description
@@ -37,15 +37,15 @@ wsl -l -v
 Confirm Debian with distro version is 2.
 
 ### Installazione Docker Desktop
-Installa Docker Desktop dal sito ufficiale 
+Installa Docker Desktop dal sito ufficiale :point_right:
 <a href="https://www.docker.com/products/docker-desktop/">
 <img src="Public/Image/vertical-logo-monochromatic.webp" style="width: 50px;">
-</a>
+</p>
+
+:warning: **Remember to run Docker Desktop as Amministrator**: Be very careful here!
 
 
-http://localhost:8080/vnc.html
 
-cliccare sul bottone "Connect"
 
 ### Download of ros-course image
 
@@ -60,3 +60,7 @@ docker pull manuelalosupsi/ros-course
 docker run -it --rm -p 8080:8080 manuelalosupsi/ros-course
 ```
 
+
+http://localhost:8080/vnc.html
+
+cliccare sul bottone "Connect"
