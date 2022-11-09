@@ -55,23 +55,32 @@ Before the course it would be preferable to perform the following steps:
   docker pull manuelalosupsi/ros-course
   ```
   <p align="center">
-  <img src="Public/Image/sull2.png" style="width: 80%;">
+  <img src="Public/Image/pull.png" style="width: 80%;">
   </p>
   If the operation was successful you can find the <b>manuelalosupsi/ros-course</b> under <em>Image</em> tab of the Docker Desktop
+  <p align="center">
+  <img src="Public/Image/sull2.png" style="width: 80%;">
+  </p>
+  
   <div align="center"><h3>:muscle::muscle:Now you are ready for the course:muscle::muscle:</h3></div
   
   
 # The Course
 
   ## Instantiate the image
+  To instantiate the image click on the play/run button :arrow_forward: (Actions column) under <em>Image</em> tab of the Docker Desktop
   <p align="center">
   <img src="Public/Image/sull3.png" style="width: 80%;">
   </p>
-  
+  The <b> Run a new container</b> appears. Expand the <b>Optional settings</b> menu and compile it as follows:
+  * <b>Container name</b>: RosCourse
+  * <b>Host port</b>: 8080
+
+
   <p align="center">
   <img src="Public/Image/ImageInstant.png" style="width: 80%;">
   </p>
-  
+
   
   If it doesn't work? :tired_face: You can try to pull again the image and instantiate it by using the following command:
   ```bash
