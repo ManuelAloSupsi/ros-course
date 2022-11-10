@@ -118,6 +118,8 @@ Before the course it would be preferable to perform the following steps:
   
   ## Turtlesim
   
+  
+  
 
   
   <a name="workspace"/>
