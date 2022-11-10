@@ -6,7 +6,7 @@
 # Description
 
   ## Table of Contents  
-  * [Homework before the course](#homework)  
+  * [Preliminary work before the course](#homework)  
   * [The course](#course)     
     * [Turtlesim](#turtlesim)
     * [Create a Workspace](#workspace)
@@ -17,7 +17,7 @@
   
 <a name="homework"/>
 
-# Homework before the course
+# Preliminary work before the course
 Before the course it would be preferable to perform the following steps:
   * [Installl WLS](#wls)
   * [Install Docker Desktop](#dockerDesktop)
@@ -28,13 +28,13 @@ Before the course it would be preferable to perform the following steps:
   
   ## Install WLS
 
-  Open PowerShell with administrator privileges and run the follow command:
+  Open PowerShell with administrator privileges and run the command:
   ```bash
-  wls --intall
+  wsl --intall
   ```
   Restart your computer to finish the WSL installation on Windows.
 
-  Always usign PowerShell as administrator update the wls
+  Always using PowerShell as administrator update the wsl
   ```bash
   wsl --update
   ```
@@ -44,9 +44,9 @@ Before the course it would be preferable to perform the following steps:
   ```
   and move the distribution to distro 2
   ```bash
-  wsl --set-vertion Debian 2
+  wsl --set-version Debian 2
   ```
-  To check to the success of the installation type the following command to verify the version of the distro:
+  To check to the successful installation type the following command to verify the version of the distro:
   ```bash
   wsl -l -v
   ```
@@ -55,7 +55,7 @@ Before the course it would be preferable to perform the following steps:
   <a name="dockerDesktop"/>
   
   ## Installazione Docker Desktop
-  Install Docker Desktoo from the official Website :point_right:
+  Install Docker Desktop from the official Website :point_right:
   <a href="https://www.docker.com/products/docker-desktop/">
   <img src="Public/Image/vertical-logo-monochromatic.webp" style="width: 50px">
   </a>
@@ -91,7 +91,7 @@ Before the course it would be preferable to perform the following steps:
   <img src="Public/Image/ImageInstant.png" style="width: 80%;">
   </p>
   
-  Now the image has been instantiate in a container and it is on execution :horse_racing:
+  Now the image has been instantiate in a container and is in execution :horse_racing:
   <p align="center">
   <img src="Public/Image/contInst.png" style="width: 80%;">
   </p>
@@ -102,7 +102,7 @@ Before the course it would be preferable to perform the following steps:
   ```
   
   ### noVNC to visualize the container
-  To visualize the container in execution can be used the noVNC tool, which we can access via the following link 
+  To visualize the container in execution the noVNC tool can be used, which can be accessed via the following link 
   http://localhost:8080/vnc.html
   <p align="center">
   <img src="Public/Image/vnc.png" style="width: 80%;">
@@ -120,7 +120,7 @@ Before the course it would be preferable to perform the following steps:
   
 
   
-  <a name="workspac"/>
+  <a name="workspace"/>
   
   ## Create a Workspace
  
