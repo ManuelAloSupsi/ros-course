@@ -113,8 +113,6 @@ Before the course it would be preferable to perform the following steps:
 <a name="course"/>
 
 # The Course
-
-  <a name="turtlesim"/>
   
   There are two goals of this course.
   First, you will learn the basis of ROS2 in python using pre-existent pakages. At the end of this first part, you will be able to access Turtlesim and rqt,as  well as write some simple command lines to interact with turtles.
@@ -130,6 +128,9 @@ Before the course it would be preferable to perform the following steps:
   <img src="Public/Image/Test_talker.png" style="width: 80%;">
   <img src="Public/Image/Test_listener.png" style="width: 80%;">
   </p>
+  
+  
+  <a name="turtlesim"/>
   
   ## Turtlesim
   
@@ -150,6 +151,7 @@ Before the course it would be preferable to perform the following steps:
   With the window alone, however, very little can be done. In order to move the turtle, you have to give it directions via specific commands.
 Below are three different methods for doing this.
 
+  <a name="Console"/>
   ### Console controller
   
   One of the simplest methods of controlling the turtle is through a controller.
@@ -173,7 +175,51 @@ Below are three different methods for doing this.
   </p>
   
   To stop this terminal press "Q".
-   
+  
+  <a name="rqt"/>
+  
+  ### rqt control
+  
+  Another method is to use the rqt control panel.
+
+  To open rqt, type in a new terminal:
+  
+  ```bash
+  rqt
+  ```
+
+  The first time you open the window, it will be empty. To access the turtlesim control select:
+
+  Plugins > Services > Service Caller
+
+  To access the turtlesim control do not forget to refresh six services.
+  
+  <p align="center">
+  <img src="Public/Image/rqt.png" style="width: 80%;">
+  </p>
+  
+   Look in the list of services for '/Spawn' and select it (light blue box).
+   Then go to the interface box (violet) and enter the position of the new turtle by choosing x and y co-ordinates. If desired, you can specify the turtle's initial rotation angle and also its name. If no name is entered, the new turtle will automatically take the name 'turtle2'.
+
+   Once you have completed the necessary fields, press the 'Call' button to call the service, i.e. send the creation request.
+  
+  <p align="center">
+  <img src="Public/Image/rqt_test_comandi.png" style="width: 80%;">
+  </p>
+  
+  There will now be two turtlesim on the turtlesim terminal. In the example in the following figure the values entered are:
+  
+  ```bash  
+  x       : 3
+  y       : 2
+  theta   : 0.0
+  name    : 'HappyTurtle'
+  ```
+  
+  <p align="center">
+  <img src="Public/Image/Spawn_from_terminal.png" style="width: 30%;">
+  </p>
+
   <a name="workspace"/>
   
   ## Create a Workspace
