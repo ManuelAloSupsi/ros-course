@@ -586,6 +586,18 @@ Below are three different methods for doing this.
   . install/setup.bash
   ```
   
+  To verify that the interface creation was successful type:
+  
+  ```bash  
+  ros2 interface show topic_message/msg/Numero
+  ```
+  
+  Should return this message:
+  
+  ```bash  
+  int64 numero
+  ```
+  
   <a name="Topic"/>
   
   ### Create topic
