@@ -445,7 +445,7 @@ Below are three different methods for doing this.
   topic_message
     ├── include
     ├── src
-    ├── CMakeLists.tx
+    ├── CMakeLists.txt
     └── package.xml
   ```
   Enter in the package and create a new directory 'msg':
@@ -468,14 +468,21 @@ Below are three different methods for doing this.
   ``` 
   Your package will now have those directory:
   
-    ```bash
+  ```bash
   topic_message
     ├── include
     ├── src
     ├── msg
-    ├── CMakeLists.tx
+    ├── CMakeLists.txt
     └── package.xml
   ```
+  
+  You are almost done!
+  
+  You have to modify the file CMackeLists.txt to add the required dependencies.
+  To do it by terminal type:
+  
+  
   
   <a name="service"/>
   
