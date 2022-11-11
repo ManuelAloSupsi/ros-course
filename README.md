@@ -602,7 +602,191 @@ Below are three different methods for doing this.
   
   ### Create topic
   
+  As before, you can now create your topic package.
   
+  Open a new terminal and type from the root of your workspace:
+  
+  ```bash
+  cd src
+  
+  ros2 pkg create --build-type ament_python my_topic --dependencies topic_message rclpy
+  ```
+  Go in the new package my_topic. It should have this strucure:
+ 
+  ```bash
+  my_topic
+    ├── package.xml
+    ├── setup.cfg
+    ├── my_topic
+    |         └── __init__.py
+    ├── resource
+    |         └── 
+    └── test
+         ├── test_copyright.py
+         ├── test_flake8.py
+         └── test_pep257.py
+  ```
+  Go in my_topic/my_topic directory and create two new files publisher.py and subscriber.py:
+  
+  ```bash
+  cd my_topic/my_topic
+  
+  cat > 'publisher.py' # Press Ctrl+D
+  cat > 'subscriber.py' # Press Ctrl+D
+  ```
+  
+  In the publisher.py write:
+  
+  ```bash
+  import rclpy
+  from rclpy.node import Node
+
+  from topic_message.msg import Numero
+
+
+  class MinimalPublisher(Node):
+
+      def __init__(self):
+          super().__init__('minimal_publisher')
+          self.publisher_ = self.create_publisher(Numero, 'topic', 10)
+          timer_period = 0.5  # seconds
+          self.timer = self.create_timer(timer_period, self.timer_callback)
+
+      def timer_callback(self):
+          msg = Numero()
+          msg.a = 0 
+          self.publisher_.publish(msg)
+          self.get_logger().info('Publishing: "%d"' % msg.a)
+
+
+  def main(args=None):
+      rclpy.init(args=args)
+
+      minimal_publisher = MinimalPublisher()
+
+      rclpy.spin(minimal_publisher)
+
+      # Destroy the node explicitly
+      # (optional - otherwise it will be done automatically
+      # when the garbage collector destroys the node object)
+      minimal_publisher.destroy_node()
+      rclpy.shutdown()
+
+
+  if __name__ == '__main__':
+      main()
+  ```
+  
+  In the subscriber.py write:
+  
+  ```bash
+  import rclpy
+  from rclpy.node import Node
+
+  from topic_message.msg import Numero
+
+
+  class MinimalSubscriber(Node):
+
+      def __init__(self):
+          super().__init__('minimal_subscriber')
+          self.subscription = self.create_subscription(
+              Numero,
+              'topic',
+              self.listener_callback,
+              10)
+          self.subscription  # prevent unused variable warning
+
+      def listener_callback(self, msg):
+          self.get_logger().info('I heard: "%d"' % msg.a)
+
+
+  def main(args=None):
+      rclpy.init(args=args)
+
+      minimal_subscriber = MinimalSubscriber()
+
+      rclpy.spin(minimal_subscriber)
+
+      # Destroy the node explicitly
+      # (optional - otherwise it will be done automatically
+      # when the garbage collector destroys the node object)
+      minimal_subscriber.destroy_node()
+      rclpy.shutdown()
+
+
+  if __name__ == '__main__':
+      main()
+  ```
+  
+  Modify the file setup.py and add the followings lines:
+  
+  ```bash
+  entry_points={
+    ‘console_scripts’: [
+      ‘talker = my_topic.publisher:main’,
+      ‘listener = my_topic.subscriber:main’,
+    ],
+  },
+  ```
+  
+  The final setup.py file should resamble to:
+  
+  ```bash
+  from setuptools import setup
+
+  package_name = 'my_topic'
+
+  setup(
+      name=package_name,
+      version='0.0.0',
+      packages=[package_name],
+      data_files=[
+          ('share/ament_index/resource_index/packages',
+              ['resource/' + package_name]),
+          ('share/' + package_name, ['package.xml']),
+      ],
+      install_requires=['setuptools'],
+      zip_safe=True,
+      maintainer='labosmt',
+      maintainer_email='labosmt@todo.todo',
+      description='TODO: Package description',
+      license='TODO: License declaration',
+      tests_require=['pytest'],
+      entry_points={
+          'console_scripts': [
+              'talker=my_topic.publisher:main',
+              'listener=my_topic.subscriber:main',
+          ],
+      },
+  )
+  ```   
+  
+  Now return in the root of the workspace and build the new package:
+  
+  ```bash
+  cd ../.. # Return in workspace root
+  
+  colcon build --packages-select my_topic
+  ```
+  
+  To access the new package, don't forget to source the workspace!
+  
+  ```bash  
+  . install/setup.bash
+  ```
+  
+  Now open a new terminal and run your topic subscriber:
+
+  ```bash  
+  ros2 run my_topic listener
+  ```
+  
+  Now open a new terminal and run your topic publisher:
+
+  ```bash  
+  ros2 run my_topic talker
+  ```
   
   <a name="service"/>
   
