@@ -9,6 +9,8 @@
   * [Preliminary work before the course](#homework)  
   * [The course](#course)     
     * [Turtlesim](#turtlesim)
+      * [Console controller](#Console)
+      * [rqt control](#rqt)
     * [Create a Workspace](#workspace)
     * [Publisher - Subscriber](#pub)  
     * [Service Server - Service Client](#service)  
@@ -152,6 +154,7 @@ Before the course it would be preferable to perform the following steps:
 Below are three different methods for doing this.
 
   <a name="Console"/>
+  
   ### Console controller
   
   One of the simplest methods of controlling the turtle is through a controller.
@@ -245,8 +248,14 @@ Below are three different methods for doing this.
   ```
   
   <p align="center">
-  <img src="Public/Image/rqt_message.PNG" style="width: 30%;">
+  <img src="Public/Image/rqt_message.PNG" style="width: 80%;">
   </p>
+
+  <a name="Terminal"/>
+  
+  ## Terminal control
+  
+  
 
   <a name="workspace"/>
   
