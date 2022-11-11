@@ -229,9 +229,24 @@ Below are three different methods for doing this.
   ```bash  
   /turtle1/set_pen
   /turtle1/teleport_absolute
- /turtle1/teleport_relative
+  /turtle1/teleport_relative
   ```
   
+  You can also send other types of commands, for example message type, by going to:
+
+  Plugins > Topics > Message Publisher
+
+  This allows you to see the list of topic commands. To send a command via the topic, select the desired topic from the list, select the frequency at which these messages will be sent (and thus executed). When the topic has been selected, add them by pressing the '+' button in the top right-hand corner. Now press the checklist to activate the command in loop mode and add the desired parameters.
+
+  One of the topic message that can be written to the turtle is:
+  
+  ```bash  
+  /turtle1/cmd_vel
+  ```
+  
+  <p align="center">
+  <img src="Public/Image/rqt_message.png" style="width: 30%;">
+  </p>
 
   <a name="workspace"/>
   
