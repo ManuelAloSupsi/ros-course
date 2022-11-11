@@ -245,7 +245,7 @@ Below are three different methods for doing this.
   ```
   
   <p align="center">
-  <img src="Public/Image/rqt_message.png" style="width: 30%;">
+  <img src="Public/Image/rqt_message.PNG" style="width: 30%;">
   </p>
 
   <a name="workspace"/>
