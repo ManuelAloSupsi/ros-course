@@ -195,7 +195,7 @@ Below are three different methods for doing this.
   To access the turtlesim control do not forget to refresh six services.
   
   <p align="center">
-  <img src="Public/Image/rqt.png" style="width: 80%;">
+  <img src="Public/Image/rqt.PNG" style="width: 80%;">
   </p>
   
    Look in the list of services for '/Spawn' and select it (light blue box).
@@ -204,7 +204,7 @@ Below are three different methods for doing this.
    Once you have completed the necessary fields, press the 'Call' button to call the service, i.e. send the creation request.
   
   <p align="center">
-  <img src="Public/Image/rqt_test_comandi.png" style="width: 80%;">
+  <img src="Public/Image/rqt_test_comandi.PNG" style="width: 80%;">
   </p>
   
   There will now be two turtlesim on the turtlesim terminal. In the example in the following figure the values entered are:
@@ -219,6 +219,19 @@ Below are three different methods for doing this.
   <p align="center">
   <img src="Public/Image/Spawn_from_terminal.png" style="width: 30%;">
   </p>
+  
+  ATTENTION! If the appearance co-ordinates are the same, the turtles will overlap and it will only be possible to distinguish one of them.
+
+  If you do a second refresh, you will see the topics of the second turtle appear.
+
+  You can explore some of the functionality such as the commands:
+
+  ```bash  
+  /turtle1/set_pen
+  /turtle1/teleport_absolute
+ /turtle1/teleport_relative
+  ```
+  
 
   <a name="workspace"/>
   
