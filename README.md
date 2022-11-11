@@ -11,6 +11,7 @@
     * [Turtlesim](#turtlesim)
       * [Console controller](#Console)
       * [rqt control](#rqt)
+      * [Terminal control](#Terminal)
     * [Create a Workspace](#workspace)
     * [Publisher - Subscriber](#pub)  
     * [Service Server - Service Client](#service)  
@@ -255,7 +256,127 @@ Below are three different methods for doing this.
   
   ## Terminal control
   
+  The last method is to publish the commands directley in the terminal.
   
+  To see the list of possible command (topic type) type the following line in a new terminal:
+  
+  ```bash  
+  ros2 topic list -t
+  ```
+  
+  The optional parameter '-t' allows to see the interface name of the message. This is useful to know the structure of the message to publish.
+  
+  This line code should return this sequence:
+  
+  ```bash  
+  /parameter_events [rcl_interfaces/msg/ParameterEvent] 
+  /rosout [rcl_interfaces/msg/Log]
+  /turtle1/cmd_vel [geometry_msgs/msg/Twist]
+  /turtle1/color_sensor [turtlesim/msg/Color]
+  /turtle1/pose [turtlesim/msg/Pose]
+  ```
+  
+  You can try to move the turtle with the /turtle1/cmd_vel command, but how to write the message? And what struture should you use?
+  
+  To know the interface structure type:
+  
+  ```bash  
+  ros2 interface show geometry_msgs/mgs/Twist
+  ```
+  
+  Which will return:
+  
+  ```bash  
+  #This expresses velocity in free space broken into its linear and angular parts.
+
+  Vector3  linear
+             float64 x
+             float64 y
+             float64 z
+  Vector3  angular
+             float64 x
+             float64 y
+             float64 z
+  ```
+
+  To publish the topic /turtle1/cml_vel message to move the turtle in circle then, you can type:
+  
+  ```bash  
+  ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}" 
+  ```
+  TODO!!!!!!!!!!!!!
+  <p align="center">
+  <img src="Public/Image/.png" style="width: 80%;">
+  </p>
+  
+  There is another type of message you can sent: the service type. At the moment let's just ignore what a servie message or a topic message are. This will be explaned later.
+  To see the list of possible command (service type) type the following line in a new terminal:
+  
+  ```bash  
+  ros2 service list -t
+  ```
+  
+  The optional parameter '-t' allows to see the interface name of the message. This is useful to know the structure of the message to publish.
+  
+  This line code should return this sequence and more:
+  
+  ```bash  
+  /clear [std_srvs/srv/Empty]
+  /kill [turtlesim/srv/Kill]
+  /reset [std_srvs/srv/Empty]
+  /spawn [turtlesim/srv/Spawn]
+  ```
+  
+  Let's focus on the /spawn command, to add a fresh new turtle to the terminal.
+  
+  To know the interface structure type:
+  
+  ```bash  
+  ros2 interface show turtlesim/srv/Spawn
+  ```
+  
+  Which will return:
+  
+  ```bash  
+  float32 x
+  float32 y
+  float32 theta
+  string name # Optional.  A unique name will be created and returned if this is empty
+  ---
+  string name
+  ```
+
+  To call the service /spawn to spawn a new turtle, you can type:
+  
+  ```bash  
+  ros2 service call /spawn turtlesim/srv/Spawn “{x: 3, y: 2, theta: 0.0, name: ’HappyTurtle’}”
+  ```
+  TODO!!!!!!!!!!!!!
+  <p align="center">
+  <img src="Public/Image/.png" style="width: 80%;">
+  </p>
+  
+  
+  Finally, the last message type is called 'action'. As the last command, let's just focus on how to use it.
+  
+  To see the action list type:
+  
+  ```bash  
+  ros2 action list -t
+  ```
+  
+  Let'send a goal to the action /turtle1/rotate_absolute, which will rotate the turtle 'turtle1' upon itself.
+  
+  ```bash  
+  ros2 action send_goal /turtle1/rotate_absolute /turtlesim/action/RotateAbsolute “{theta: -1.57}” --feedback
+  ```
+  
+  --feedback is an optional parameter to display feedback during execution
+  
+  TODO!!!!!!!!!!!!!
+  <p align="center">
+  <img src="Public/Image/.png" style="width: 80%;">
+  </p>
 
   <a name="workspace"/>
   
