@@ -568,6 +568,18 @@ Below are three different methods for doing this.
     # END ADDED LINES
   </package>
   ```
+  The interface is ready to be compiled and used!
+  
+  To compile the package in the root of the workspace and type:
+  
+  ```bash
+  colcon build --packages-select topic_message
+  ```
+  To access the new interface, don't forget to source the workspace!
+  
+  ```bash  
+  . install/setup.bash
+  ```
   
   <a name="service"/>
   
