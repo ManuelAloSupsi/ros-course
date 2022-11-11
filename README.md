@@ -16,6 +16,7 @@
     * [Publisher - Subscriber](#pub)  
       * [Create interface](#TopicInterface)
       * [Create topic](#Topic)
+      * [Create advanced topic](#TopicAd)
     * [Service Server - Service Client](#service)  
     * [Action Server - Action Client](#action)  
 
@@ -466,7 +467,7 @@ Below are three different methods for doing this.
   ```bash 
   cd msg
   cat > 'Numero.msg'
-  int64 numero
+  int64 a
   
   # Press Ctrl+D to save and close
   # Or press Ctrl+S to save
@@ -793,6 +794,22 @@ Below are three different methods for doing this.
   <p align="center">
   <img src="Public/Image/.png" style="width: 80%;">
   </p>
+  
+  <a name="TopicAd"/>
+  
+  ### Create advanced topic
+  
+  Now you can try to create from strach a new topic and a new interface.
+  
+  Create an interface named 'topic_messages' with this structure:
+  
+  ```bash  
+  int64 a
+  int64 b
+  ```
+  
+  Create a new topic named 'my_advanced_topic' that use the interface 'topic_messages' which publish two numbers.
+  
   <a name="service"/>
   
   ## Service Server - Service Client
