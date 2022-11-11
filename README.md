@@ -483,7 +483,6 @@ Below are three different methods for doing this.
   Add the following lines in the CMackeLists.txt file:
   
   ```bash
-  find_package(geometry_msgs REQUIRED)
   find_package(rosidl_default_generators REQUIRED)
   
   rosidl_generate_interfaces(${PROJECT_NAME}
@@ -526,6 +525,48 @@ Below are three different methods for doing this.
   endif()
 
   ament_package()
+  ```
+  Now you need to modify the package.xml file.
+  
+  Add those lines in the package.xml file:
+  
+  ```bash
+  <build_depend>rosidl_default_generators</build_depend>
+  
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  
+  <member_of_group>rosidl_interface_packages</member_of_group>
+  ```
+  
+  Your packages.xml file should resamble to this:
+  
+  ```bash
+  <?xml version="1.0"?>
+  <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+  <package format="3">
+    <name>topic_message</name>
+    <version>0.0.0</version>
+    <description>TODO: Package description</description>
+    <maintainer email="labosmt@todo.todo">labosmt</maintainer>
+    <license>TODO: License declaration</license>
+
+    <buildtool_depend>ament_cmake</buildtool_depend>
+
+    <test_depend>ament_lint_auto</test_depend>
+    <test_depend>ament_lint_common</test_depend>
+
+    <export>
+      <build_type>ament_cmake</build_type>
+    </export>
+
+    # START ADDED LINES
+    <build_depend>rosidl_default_generators</build_depend>
+    
+    <exec_depend>rosidl_default_runtime</exec_depend>
+
+    <member_of_group>rosidl_interface_packages</member_of_group>
+    # END ADDED LINES
+  </package>
   ```
   
   <a name="service"/>
