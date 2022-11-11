@@ -381,7 +381,42 @@ Below are three different methods for doing this.
   <a name="workspace"/>
   
   ## Create a Workspace
- 
+  
+  Now that you know the basis of ROS2, you are ready to create your first workspace, wich will contain all your ROS2 packages.
+  
+  To create the workspace type the following lines in a new terminal:
+  
+  ```bash  
+  mkdir -p ~/ros2_ws/src
+  cd ~/ros2_ws
+  ```
+  Compile it with the following command:
+  
+  ```bash  
+  colcon build --symlink-install
+  ```
+  
+  This will create the files used from the workspace.
+  
+  ```bash  
+  ros2_ws
+    ├── build
+    ├── install
+    ├── log
+    └── src
+  ```
+  To test if everything was successful type:
+  
+  ```bash  
+  colcon test
+  ```
+  
+  Now your workspace is ready to be used. <b>Don't forget to source it on every new terminal!</b>
+  
+  ```bash  
+  . install/setup.bash
+  ```
+  This line code has to be runned in the root of your workspace.
 
   <a name="pub"/>
   
