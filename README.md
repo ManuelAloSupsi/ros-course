@@ -119,14 +119,45 @@ Before the course it would be preferable to perform the following steps:
   There are two goals of this course.
   First, you will learn the basis of ROS2 in python using pre-existent pakages. At the end of this first part, you will be able to access Turtlesim and rqt,as  well as write some simple command lines to interact with turtles.
   
-  The second part will gide yout to the creation of a workspace from scratch, complete with interfaces and nodes. The aim of this second part is to create a step-by-step system in wcich a series of values are intrduces to be summed up, obtaining an indication of the status of the computation and the final resulta.
+  <p align="center">
+  <img src="Public/Image/Use_TurtleSim.png" style="width: 80%;">
+  </p>
+  
+  The second part will gide yout to the creation of a workspace from scratch, complete with interfaces and nodes. The aim of this second part is to create a step-by-step system in wcich a series of values are intrduces to be summed up, obtaining an indication of the status of the computation and the final result.
   At the end of the exercice, you will be able to create a workspace, an interface package, a simple topic node, a simple service node and a simple action node.
+  
+  <p align="center">
+  <img src="Public/Image/Test_talker.png" style="width: 80%;">
+  <img src="Public/Image/Test_listener.png" style="width: 80%;">
+  </p>
   
   ## Turtlesim
   
+  Turtlesim and rqt have been already installed the provided Docker.
   
+  To launch turtlesim, opend a new terminal and type:
   
+  ```bash
+  ros2 run turtlesim turtlesim_node
+  ```
+  
+  If the operation was successful, you will see a new window appear, as shown in the following figure.
+  
+  <p align="center">
+  <img src="Public/Image/TurtleSim.png" style="width: 80%;">
+  </p>
+  
+  With the window alone, however, very little can be done. In order to move the turtle, you have to give it directions via specific commands.
+Below are three different methods for doing this.
 
+  ### Console controller
+  
+  One of the simplest methods of controlling the turtle is through a controller.
+  In a new terminal, type:
+  
+  ```bash
+  ros2 run turtlesim turtle_teleop_key
+  ```
   
   <a name="workspace"/>
   
