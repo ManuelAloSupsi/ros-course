@@ -411,7 +411,7 @@ Below are three different methods for doing this.
   colcon test
   ```
   
-  Now your workspace is ready to be used. <b>Don't forget to source it on every new terminal!</b>
+  Now your workspace is ready to be used. <b>Don't forget to source it in every new terminal!</b>
   
   ```bash  
   . install/setup.bash
@@ -421,6 +421,61 @@ Below are three different methods for doing this.
   <a name="pub"/>
   
   ## Publisher - Subscriber
+  
+  We want now to create one simple code that can execute some task by itself.
+  Let's create a system called 'publisher-subscriber'.
+  The publisher will send some numbers and the subscriber will read and display them on its terminal.
+  
+  First you will need a interface which define the message structure.
+  
+  It's then time to create a fresh new interface package to work with.
+  
+  Open a new terminal, <b> source the workspace!</b> and type:
+  
+  ```bash 
+  cd src
+  ros2 pkg create --build-type ament_cmake topic_message
+  ```
+  
+  Your interface name is then 'topic_message'.
+  
+  This command will create a directory as shown here:
+  
+  ```bash
+  topic_message
+    ├── include
+    ├── src
+    ├── CMakeLists.tx
+    └── package.xml
+  ```
+  Enter in the package and create a new directory 'msg':
+  
+  ```bash 
+  cd topic_message
+  mkdir msg
+  ``` 
+  
+  Enter in the 'msg' directory and create a file named 'Numero.msg'. This will contain your structure.
+  
+  ```bash 
+  cd msg
+  cat > 'Numero.msg'
+  int64 numero
+  
+  # Press Ctrl+D to save and close
+  # Or press Ctrl+S to save
+  # and then Cltr+X to exit the file
+  ``` 
+  Your package will now have those directory:
+  
+    ```bash
+  topic_message
+    ├── include
+    ├── src
+    ├── msg
+    ├── CMakeLists.tx
+    └── package.xml
+  ```
   
   <a name="service"/>
   
