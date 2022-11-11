@@ -144,7 +144,7 @@ Before the course it would be preferable to perform the following steps:
   If the operation was successful, you will see a new window appear, as shown in the following figure.
   
   <p align="center">
-  <img src="Public/Image/TurtleSim.png" style="width: 80%;">
+  <img src="Public/Image/TurtleSim.png" style="width: 30%;">
   </p>
   
   With the window alone, however, very little can be done. In order to move the turtle, you have to give it directions via specific commands.
@@ -153,12 +153,27 @@ Below are three different methods for doing this.
   ### Console controller
   
   One of the simplest methods of controlling the turtle is through a controller.
+  
   In a new terminal, type:
   
   ```bash
   ros2 run turtlesim turtle_teleop_key
   ```
   
+   If the operation was successful, the terminal will resemble to the following image:
+   
+   <p align="center">
+  <img src="Public/Image/console.png" style="width: 80%;">
+  </p>
+  
+  At this point you will be able to move the turtle around usind specific keys of the keyboard.
+  
+  <p align="center">
+  <img src="Public/Image/Comandi_turtlesim.png" style="width: 50%;">
+  </p>
+  
+  To stop this terminal press "Q".
+   
   <a name="workspace"/>
   
   ## Create a Workspace
