@@ -21,9 +21,11 @@
     * [Service Server - Service Client](#SerCli)
       * [Create interface](#ServiceInterface)
       * [Create service](#Service)
+      * [Call service from terminal](#ServiceTerminal)
     * [Action Server - Action Client](#Action)
       * [Create interface](#ActionInterface)
       * [Create action](#ActionSerCli)
+      * [Send goal topic from terminal](#ActionTerminal)
   
 <a name="homework"/>
 
@@ -856,9 +858,25 @@ Below are three different methods for doing this.
   ```
   
   ```bash
-  ros2 interface show <interface_name>
+  ros2 interface show <interface_name>  
   ```
+      
+  Hint:
+  Please notice that the topic name always contains '/' at firt.
+  Please notice that the interface name don't contains '/' at firt, but need the whole directory.
+   
+  Hint:
+  If something goes wrong, check the spaces in the command arguments.
+  The argument need this form to work properly:
+  
+  '{<variable_name>: <varialbe_value>, <variable_name>: <varialbe_value>}'
+  
   <b>Don't forget to source your publish terminal before start!</b>
+  
+  TODO!!!!!!!!!!!!!
+  <p align="center">
+  <img src="Public/Image/.png" style="width: 80%;">
+  </p>
       
   <a name="SerCli"/>
   
@@ -1239,6 +1257,53 @@ Below are three different methods for doing this.
   . install/setup.bash
   ros2 run my_service service
   ```
+  
+  TODO!!!!!!!!!!!!!
+  <p align="center">
+  <img src="Public/Image/.png" style="width: 80%;">
+  </p>
+  
+  <a name="ServiceTerminal"/>
+  
+  ## Call service from terminal
+  
+  If you want, you can call a service from terminal.
+  
+  Open a new terminal and run your service server:
+
+  ```bash
+  . install/setup.bash
+  ros2 run my_service service
+  ```
+  
+  With the acquired knowledge, try to call a service using this command line as suggestion:
+  
+  ```bash  
+  ros2 service call <service_name> <srv_type> '<arguments>'
+  ```
+  
+  Hint:
+  Use the following commands to get informations of the structure of the service to call:
+  
+  ```bash
+  ros2 service list -t
+  ```
+  
+  ```bash
+  ros2 interface show <interface_name>  
+  ```
+      
+  Hint:
+  Please notice that the service name always contains '/' at firt.
+  Please notice that the interface name don't contains '/' at firt, but need the whole directory.
+   
+  Hint:
+  If something goes wrong, check the spaces in the command arguments.
+  The argument need this form to work properly:
+  
+  '{<variable_name>: <varialbe_value>, <variable_name>: <varialbe_value>}'
+  
+  <b>Don't forget to source your publish terminal before start!</b>
   
   TODO!!!!!!!!!!!!!
   <p align="center">
@@ -1675,6 +1740,53 @@ Below are three different methods for doing this.
   . install/setup.bash
   ros2 run my_action action_server
   ```
+  
+  TODO!!!!!!!!!!!!!
+  <p align="center">
+  <img src="Public/Image/.png" style="width: 80%;">
+  </p>
+  
+  <a name="ActionTerminal"/>
+  
+  ## Send goal from terminal
+  
+  If you want, you can send an action goal from terminal.
+  
+  Open a new terminal and run your action server:
+
+  ```bash
+  . install/setup.bash
+  ros2 run my_action action_server
+  ```
+  
+  With the acquired knowledge, try to send an action goal using this command line as suggestion:
+  
+  ```bash  
+  ros2 action send_goal <action_name> <action_type> '<arguments>'
+  ```
+  
+  Hint:
+  Use the following commands to get informations of the structure of the goal to send:
+  
+  ```bash
+  ros2 action list -t
+  ```
+  
+  ```bash
+  ros2 interface show <interface_name>  
+  ```
+      
+  Hint:
+  Please notice that the action name always contains '/' at firt.
+  Please notice that the interface name don't contains '/' at firt, but need the whole directory.
+   
+  Hint:
+  If something goes wrong, check the spaces in the command arguments.
+  The argument need this form to work properly:
+  
+  '{<variable_name>: <varialbe_value>, <variable_name>: <varialbe_value>}'
+  
+  <b>Don't forget to source your publish terminal before start!</b>
   
   TODO!!!!!!!!!!!!!
   <p align="center">
