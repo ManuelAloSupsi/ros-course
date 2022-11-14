@@ -310,10 +310,19 @@ Below are three different methods for doing this.
   ```bash  
   ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}" 
   ```
+  
+  To stop it press "Ctrl+C"
+  
   TODO!!!!!!!!!!!!!
   <p align="center">
   <img src="Public/Image/.png" style="width: 80%;">
   </p>
+  
+  To move the turtle just once, add '--once' to the command in terminal:
+  
+  ```bash  
+  ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}" --once
+  ```
   
   There is another type of message you can sent: the service type. At the moment let's just ignore what a servie message or a topic message are. This will be explaned later.
   To see the list of possible command (service type) type the following line in a new terminal:
