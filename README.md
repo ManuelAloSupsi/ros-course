@@ -17,6 +17,7 @@
       * [Create interface](#TopicInterface)
       * [Create topic](#Topic)
       * [Create advanced topic](#TopicAd)
+      * [Publish topic from terminal](#TopicTerminal)
     * [Service Server - Service Client](#SerCli)
       * [Create interface](#ServiceInterface)
       * [Create service](#Service)
@@ -828,6 +829,37 @@ Below are three different methods for doing this.
   
   Create a new topic named 'my_advanced_topic' that use the interface 'topic_messages' which publish two numbers.
   
+  <a name="TopicTerminal"/>
+  
+  ## Publish topic from terminal
+  
+  If you want, you can publish a topic from terminal.
+  
+  Open a new terminal and run your topic subscriber:
+
+  ```bash
+  . install/setup.bash
+  ros2 run my_topic listener
+  ```
+  
+  With the acquired knowledge, try to publish a topic using this command line as suggestion:
+  
+  ```bash  
+  ros2 topic pub <topic_name> <msg_type> '<arguments>' --once 
+  ```
+  
+  Hint:
+  Use the following commands to get informations of the structure of the message to publish:
+  
+  ```bash
+  ros2 topic list -t
+  ```
+  
+  ```bash
+  ros2 interface show <interface_name>
+  ```
+  <b>Don't forget to source your publish terminal before start!</b>
+      
   <a name="SerCli"/>
   
   ## Service Server - Service Client
