@@ -287,7 +287,7 @@ Below are three different methods for doing this.
   To know the interface structure type:
   
   ```bash  
-  ros2 interface show geometry_msgs/mgs/Twist
+  ros2 interface show geometry_msgs/msg/Twist
   ```
   
   Which will return:
