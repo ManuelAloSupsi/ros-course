@@ -1197,12 +1197,14 @@ Below are three different methods for doing this.
   Now open a new terminal and run your service client:
 
   ```bash  
+  . install/setup.bash
   ros2 run my_service client
   ```
   
   Now open a new terminal and run your service server:
 
   ```bash  
+  . install/setup.bash
   ros2 run my_service service
   ```
   
@@ -1631,12 +1633,14 @@ Below are three different methods for doing this.
   Now open a new terminal and run your action client:
 
   ```bash  
+  . install/setup.bash
   ros2 run my_action action_client
   ```
   
   Now open a new terminal and run your action server:
 
   ```bash  
+  . install/setup.bash
   ros2 run my_action action_server
   ```
   
