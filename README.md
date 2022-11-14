@@ -25,7 +25,7 @@
     * [Action Server - Action Client](#Action)
       * [Create interface](#ActionInterface)
       * [Create action](#ActionSerCli)
-      * [Send goal topic from terminal](#ActionTerminal)
+      * [Send goal from terminal](#ActionTerminal)
   
 <a name="homework"/>
 
