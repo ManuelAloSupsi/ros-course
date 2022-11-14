@@ -1200,9 +1200,188 @@ Below are three different methods for doing this.
   
   ## Action Server - Action Client
   
+  We created a publisher subscriber and a service server/client. Now we want to add a final step and create a simple code that can execute some task by itself and send some feedbacks while executing task. In this case we want to send the request to sum a number a certain numebr of time, while get some informations on execution and get the result went the computation is done. This task will act as a multiplication, but to show the computation's progress through the feedback, it use the sum to get result.
+  Let's create a system called 'Action'.
+  The action client will send some numbers and the action server will send back the sum.
+  
   <a name="ActionInterface"/>
   
   ## Create action
+  
+  First you will need a interface which define the message structure.
+  
+  It's then time to create a fresh new interface package to work with.
+  
+  Open a new terminal, <b> source the workspace!</b> and type:
+  
+  ```bash 
+  cd src
+  ros2 pkg create --build-type ament_cmake action_message
+  ```
+  
+  Your interface name is then 'action_message'.
+  
+  This command will create a directory as shown here:
+  
+  ```bash
+  action_message
+    ├── include
+    ├── src
+    ├── CMakeLists.txt
+    └── package.xml
+  ```
+  Enter in the package and create a new directory 'action':
+  
+  ```bash 
+  cd action_message
+  mkdir action
+  ``` 
+  
+  Enter in the 'action' directory and create a file named 'SommaFeed.action'. This will contain your structure.
+  
+  ```bash 
+  cd action
+  cat > 'SommaFeed.action'
+  int64 a
+  int64 ripetizioni
+  ---
+  int64 somma
+  ---
+  string msg
+  
+  # Press Ctrl+D to save and close
+  # Or press Ctrl+S to save
+  # and then Cltr+X to exit the file
+  ``` 
+  Your package will now have those directory:
+  
+  ```bash
+  action_message
+    ├── include
+    ├── src
+    ├── action
+    ├── CMakeLists.txt
+    └── package.xml
+  ```
+  
+  You are almost done!
+  
+  You have to modify the file CMackeLists.txt to add the required dependencies.
+  Add the following lines in the CMackeLists.txt file:
+  
+  ```bash
+  find_package(rosidl_default_generators REQUIRED)
+  
+  rosidl_generate_interfaces(${PROJECT_NAME}
+    "action/SommaFeed.action"
+  )
+  ```
+  Your CMakeLists.txt file should resamble to this:
+  
+  ```bash
+  cmake_minimum_required(VERSION 3.8)
+  project(action_message)
+
+  if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    add_compile_options(-Wall -Wextra -Wpedantic)
+  endif()
+
+  # find dependencies
+  find_package(ament_cmake REQUIRED)
+  # uncomment the following section in order to fill in
+  # further dependencies manually.
+  # find_package(<dependency> REQUIRED)
+
+  find_package(rosidl_default_generators REQUIRED)
+
+  rosidl_generate_interfaces(${PROJECT_NAME}
+    "action/SommaFeed.action"
+  )
+
+  if(BUILD_TESTING)
+    find_package(ament_lint_auto REQUIRED)
+    # the following line skips the linter which checks for copyrights
+    # uncomment the line when a copyright and license is not present in all source files
+    #set(ament_cmake_copyright_FOUND TRUE)
+    # the following line skips cpplint (only works in a git repo)
+    # uncomment the line when this package is not in a git repo
+    #set(ament_cmake_cpplint_FOUND TRUE)
+    ament_lint_auto_find_test_dependencies()
+  endif()
+
+  ament_package()
+  ```
+  Now you need to modify the package.xml file.
+  
+  Add those lines in the package.xml file:
+  
+  ```bash
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+  <depend>action_msgs</depend>
+
+  <member_of_group>rosidl_interface_packages</member_of_group>
+  ```
+  
+  Your packages.xml file should resamble to this:
+  
+  ```bash
+  <?xml version="1.0"?>
+  <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+  <package format="3">
+    <name>action_message</name>
+    <version>0.0.0</version>
+    <description>TODO: Package description</description>
+    <maintainer email="labosmt@todo.todo">labosmt</maintainer>
+    <license>TODO: License declaration</license>
+
+    <buildtool_depend>ament_cmake</buildtool_depend>
+
+    <test_depend>ament_lint_auto</test_depend>
+    <test_depend>ament_lint_common</test_depend>
+
+    <export>
+      <build_type>ament_cmake</build_type>
+    </export>
+
+    <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+    <depend>action_msgs</depend>
+
+    <member_of_group>rosidl_interface_packages</member_of_group>
+  </package>
+  ```
+  Please note that in this case you are using some come closely related to actions! You are not creating a simple interface as topic or service interface.
+  
+  The interface is ready to be compiled and used!
+  
+  To compile the package in the root of the workspace and type:
+  
+  ```bash
+  colcon build --packages-select action_message
+  ```
+  To access the new interface, don't forget to source the workspace!
+  
+  ```bash  
+  . install/setup.bash
+  ```
+  
+  To verify that the interface creation was successful type:
+  
+  ```bash  
+  ros2 interface show action_message/action/SommaFeed
+  ```
+  
+  Should return this message:
+  
+  ```bash  
+  int64 a
+  int64 ripetizioni
+  ---
+  int64 somma
+  ---
+  string msg
+  ```
   
   <a name="ActionSerCli"/>
   
