@@ -383,7 +383,7 @@ Below are three different methods for doing this.
   Let'send a goal to the action /turtle1/rotate_absolute, which will rotate the turtle 'turtle1' upon itself.
   
   ```bash  
-  ros2 action send_goal /turtle1/rotate_absolute /turtlesim/action/RotateAbsolute “{theta: -1.57}” --feedback
+  ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute '{theta: -1.57}' --feedback
   ```
   
   --feedback is an optional parameter to display feedback during execution
