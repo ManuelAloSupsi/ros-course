@@ -998,6 +998,204 @@ Below are three different methods for doing this.
   
   ## Create service
   
+  As before, you can now create your service package.
+  
+  Open a new terminal and type from the root of your workspace:
+  
+  ```bash
+  cd src
+  
+  ros2 pkg create --build-type ament_python my_service --dependencies service_message rclpy
+  ```
+  Go in the new package my_service. It should have this strucure:
+ 
+  ```bash
+  my_service
+    ├── package.xml
+    ├── setup.cfg
+    ├── my_service
+    |         └── __init__.py
+    ├── resource
+    |         └── 
+    └── test
+         ├── test_copyright.py
+         ├── test_flake8.py
+         └── test_pep257.py
+  ```
+  Go in my_service/my_service directory and create two new files service_client.py and service_server.py:
+  
+  ```bash
+  cd my_service/my_service
+  
+  cat > 'service_client.py' # Press Ctrl+D
+  cat > 'service_server.py' # Press Ctrl+D
+  ```
+  
+  In the service_client.py write:
+  
+  ```bash
+  from service_message.srv import Somma
+
+  import rclpy
+  from rclpy.node import Node
+
+
+  class MinimalClientAsync(Node):
+
+      def __init__(self):
+          super().__init__('minimal_client_async')
+          self.cli = self.create_client(Somma, 'sum_values')
+
+          while not self.cli.wait_for_service(timeout_sec=1.0):
+              self.get_logger().info('service not available, waiting again...')
+          self.req = Somma.Request()
+
+      def send_request(self):
+          self.req.a = 1
+          self.req.b = 2
+          self.future = self.cli.call_async(self.req)
+
+
+  def main(args=None):
+      rclpy.init(args=args)
+
+      minimal_client = MinimalClientAsync()
+      minimal_client.send_request()
+
+      while rclpy.ok():
+          rclpy.spin_once(minimal_client)
+          if minimal_client.future.done():
+              try:
+                  response = minimal_client.future.result()
+              except Exception as e:
+                  minimal_client.get_logger().info(
+                      'Service call failed %r' % (e,))
+              else:
+                  minimal_client.get_logger().info(
+                      'Result sum: %d + %d = %d' % (minimal_client.req.a, minimal_client.req.b, response.somma))
+              break
+
+      minimal_client.destroy_node()
+      rclpy.shutdown()
+
+
+  if __name__ == '__main__':
+      try:
+          main()
+
+      except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
+          self.get_logger().info('Program has stop...')
+  ```
+  
+  In the service_server.py write:
+  
+  ```bash
+  from service_message.srv import Somma
+
+  import rclpy
+  from rclpy.node import Node
+
+
+  class MinimalService(Node):
+
+      def __init__(self):
+          super().__init__('minimal_service')
+          self.srv = self.create_service(Somma, 'sum_values', self.sum_values_callback)
+
+      def sum_values_callback(self, request, response):
+          response.somma = request.a + request.b
+
+          self.get_logger().info('Incoming request\na: %d b: %d' % (request.a, request.b))
+
+          return response
+
+  def main(args=None):
+      rclpy.init(args=args)
+
+      minimal_service = MinimalService()
+
+      rclpy.spin(minimal_service)
+
+      rclpy.shutdown()
+
+  if __name__ == '__main__':
+      main()
+  ```
+
+  Modify the file setup.py and add the followings lines:
+
+  ```bash
+  entry_points={
+      'console_scripts': [
+        'service = my_service.service_server:main',
+        'client = my_service.service_client:main',
+      ],
+    },
+  ```
+  
+  The final setup.py file should resamble to:
+  
+  ```bash
+  from setuptools import setup
+
+  package_name = 'my_service'
+
+  setup(
+      name=package_name,
+      version='0.0.0',
+      packages=[package_name],
+      data_files=[
+          ('share/ament_index/resource_index/packages',
+              ['resource/' + package_name]),
+          ('share/' + package_name, ['package.xml']),
+      ],
+      install_requires=['setuptools'],
+      zip_safe=True,
+      maintainer='labosmt',
+      maintainer_email='labosmt@todo.todo',
+      description='TODO: Package description',
+      license='TODO: License declaration',
+      tests_require=['pytest'],
+      entry_points={
+          'console_scripts': [
+            'service = my_service.service_server:main',
+            'client = my_service.service_client:main',
+          ],
+      },
+  )
+  ```   
+  
+  Now return in the root of the workspace and build the new package:
+  
+  ```bash
+  cd ../.. # Return in workspace root
+  
+  colcon build --packages-select my_service
+  ```
+  
+  To access the new package, don't forget to source the workspace!
+  
+  ```bash  
+  . install/setup.bash
+  ```
+  
+  Now open a new terminal and run your service client:
+
+  ```bash  
+  ros2 run my_service client
+  ```
+  
+  Now open a new terminal and run your service server:
+
+  ```bash  
+  ros2 run my_service service
+  ```
+  
+  TODO!!!!!!!!!!!!!
+  <p align="center">
+  <img src="Public/Image/.png" style="width: 80%;">
+  </p>
+  
   <a name="Action"/>
   
   ## Action Server - Action Client
