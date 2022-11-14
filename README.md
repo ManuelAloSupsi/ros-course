@@ -78,6 +78,10 @@ Before the course it would be preferable to perform the following steps:
   ```bash
   docker pull manuelalosupsi/ros-course
   ```
+  
+  <p align="center">
+  <img src="Public/Image/pull.png" style="width: 80%;">
+  </p>
   If the operation was successful you can find the <b>manuelalosupsi/ros-course</b> under <em>Image</em> tab of the Docker Desktop
   <p align="center">
   <img src="Public/Image/sull2.png" style="width: 80%;">
@@ -737,10 +741,10 @@ Below are three different methods for doing this.
   
   ```bash
   entry_points={
-    ‘console_scripts’: [
-      ‘talker = my_topic.publisher:main’,
-      ‘listener = my_topic.subscriber:main’,
-    ],
+      'console_scripts': [
+          'talker=my_topic.publisher:main',
+          'listener=my_topic.subscriber:main',
+      ],
   },
   ```
   
