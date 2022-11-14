@@ -1740,8 +1740,8 @@ Below are three different methods for doing this.
   ```
   
   <p align="center">
-  <img src="Public/Image/Action_server.png" style="width: 80%;">
   <img src="Public/Image/Action_client.png" style="width: 80%;">
+  <img src="Public/Image/Action_server.png" style="width: 80%;">
   </p>
   
   <a name="ActionTerminal"/>
