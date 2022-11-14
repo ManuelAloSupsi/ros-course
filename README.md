@@ -321,7 +321,7 @@ Below are three different methods for doing this.
   To stop it press "Ctrl+C"
   
   <p align="center">
-  <img src="Public/Image/Twist_total.png" style="width: 80%;">
+  <img src="Public/Image/Twist_total.PNG" style="width: 30%;">
   </p>
   
   To move the turtle just once, add '--once' to the command in terminal:
@@ -330,7 +330,7 @@ Below are three different methods for doing this.
   ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}" --once
   ```
   <p align="center">
-  <img src="Public/Image/Twist.png" style="width: 80%;">
+  <img src="Public/Image/Twist.PNG" style="width: 30%;">
   </p>
   
   There is another type of message you can sent: the service type. At the moment let's just ignore what a servie message or a topic message are. This will be explaned later.
@@ -376,7 +376,7 @@ Below are three different methods for doing this.
   ros2 service call /spawn turtlesim/srv/Spawn '{x: 3, y: 2, theta: 0.0, name: "HappyTurtle"}'
   ```
   <p align="center">
-  <img src="Public/Image/Spawn_from_terminal.png" style="width: 80%;">
+  <img src="Public/Image/Spawn_from_terminal.png" style="width: 30%;">
   </p>
     
   Finally, the last message type is called 'action'. As the last command, let's just focus on how to use it.
@@ -811,8 +811,8 @@ Below are three different methods for doing this.
   ```
   
   <p align="center">
-  <img src="Public/Image/Topic_publisher.png" style="width: 80%;">
   <img src="Public/Image/Topic_subscriber.png" style="width: 80%;">
+  <img src="Public/Image/Topic_publisher.png" style="width: 80%;">
   </p>
   
   <a name="TopicAd"/>
