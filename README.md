@@ -181,7 +181,7 @@ Below are three different methods for doing this.
   
    If the operation was successful, the terminal will resemble to the following image:
    
-   <p align="center">
+  <p align="center">
   <img src="Public/Image/console.png" style="width: 80%;">
   </p>
   
