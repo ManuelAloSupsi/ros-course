@@ -364,7 +364,7 @@ Below are three different methods for doing this.
   To call the service /spawn to spawn a new turtle, you can type:
   
   ```bash  
-  ros2 service call /spawn turtlesim/srv/Spawn “{x: 3, y: 2, theta: 0.0, name: ’HappyTurtle’}”
+  ros2 service call /spawn turtlesim/srv/Spawn '{x: 3, y: 2, theta: 0.0, name: "HappyTurtle"}'
   ```
   TODO!!!!!!!!!!!!!
   <p align="center">
