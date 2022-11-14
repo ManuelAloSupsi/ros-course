@@ -1351,7 +1351,7 @@ Below are three different methods for doing this.
     <member_of_group>rosidl_interface_packages</member_of_group>
   </package>
   ```
-  Please note that in this case you are using some come closely related to actions! You are not creating a simple interface as topic or service interface.
+  Please note that in this case you are using some code closely related to actions! You are not creating a simple interface as topic or service interface.
   
   The interface is ready to be compiled and used!
   
@@ -1386,4 +1386,246 @@ Below are three different methods for doing this.
   <a name="ActionSerCli"/>
   
   ## Create action
+    
+  As before, you can now create your action package.
   
+  Open a new terminal and type from the root of your workspace:
+  
+  ```bash
+  cd src
+  
+  ros2 pkg create --build-type ament_python my_action --dependencies action_message rclpy
+  ```
+  Go in the new package my_action. It should have this strucure:
+ 
+  ```bash
+  my_action
+    ├── package.xml
+    ├── setup.cfg
+    ├── my_action
+    |         └── __init__.py
+    ├── resource
+    |         └── 
+    └── test
+         ├── test_copyright.py
+         ├── test_flake8.py
+         └── test_pep257.py
+  ```
+  Go in my_action/my_action directory and create two new files action_client.py and action_server.py:
+  
+  ```bash
+  cd my_action/my_action
+  
+  cat > 'action_client.py' # Press Ctrl+D
+  cat > 'action_server.py' # Press Ctrl+D
+  ```
+  
+  In the action_client.py write:
+  
+  ```bash
+  import rclpy
+  from rclpy.action import ActionClient
+  from rclpy.node import Node
+
+  from action_message.action import SommaFeed
+
+  class SumActionClient(Node):
+
+      def __init__(self):
+          super().__init__('somma_action_server')
+          self._action_client = ActionClient(self, SommaFeed, 'values_sum_feed')
+          self.get_logger().info("Initialisation OK")
+
+      def send_goal(self):
+          self.get_logger().info("I'm going to send goal")
+
+          goal_msg = SommaFeed.Goal()
+
+          goal_msg.a = 1
+          goal_msg.ripetizioni = 4
+
+          self._action_client.wait_for_server()
+
+          self._send_goal_future = self._action_client.send_goal_async(goal_msg, feedback_callback=self.feedback_callback)
+
+          self._send_goal_future.add_done_callback(self.goal_response_callback)
+
+      def goal_response_callback(self, future):
+          goal_handle = future.result()
+          if not goal_handle.accepted:
+              self.get_logger().info('Goal rejected :(')
+              return
+
+          self.get_logger().info('Goal accepted :)')
+
+          self._get_result_future = goal_handle.get_result_async()
+          self._get_result_future.add_done_callback(self.get_result_callback)
+
+      def get_result_callback(self, future):
+          result = future.result().result
+          self.get_logger().info('Result: {0}'.format(result.somma))
+          rclpy.shutdown()
+
+      def feedback_callback(self, feedback_msg):
+          feedback = feedback_msg.feedback
+          self.get_logger().info('Received feedback: {0}'.format(feedback.msg))
+
+
+  def main(args=None):
+      rclpy.init(args=args)
+
+      action_client = SumActionClient()
+
+      action_client.send_goal()
+
+      rclpy.spin(action_client)
+
+
+  if __name__ == '__main__':
+      main()
+  ```
+  
+  In the action_server.py write:
+  
+  ```bash
+  import rclpy
+  import time
+  from rclpy.action import ActionServer
+  from rclpy.node import Node
+
+  from action_message.action import SommaFeed
+
+  class SumActionServer(Node):
+
+      def __init__(self):
+          super().__init__('somma_action_server')
+          self._action_server = ActionServer(
+              self,
+              SommaFeed,
+              'values_sum_feed',
+              self.execute_callback)
+
+          self.interim_result = 0
+
+      def execute_callback(self, goal_handle):
+          self.get_logger().info('Executing goal...')
+
+          feedback_msg = SommaFeed.Feedback()
+
+          feedback_msg.msg = "I'm going to start sum..."
+
+          self.interim_result = 0
+
+
+          for i in range(1, goal_handle.request.ripetizioni + 1):
+
+              self.interim_result += goal_handle.request.a
+
+              feedback_msg.msg = "Iteration " + str(i) + ". Actual result = " + str(self.interim_result)
+
+              self.get_logger().info('Feedback: {0}'.format(feedback_msg.msg))
+
+              goal_handle.publish_feedback(feedback_msg)
+
+              time.sleep(1)
+
+
+          goal_handle.succeed()
+
+          result = SommaFeed.Result()
+
+          result.somma = self.interim_result
+
+          return result
+
+  def main(args=None):
+      rclpy.init(args=args)
+
+      action_server = SumActionServer()
+
+      while rclpy.ok():
+          rclpy.spin(action_server)
+
+      minimal_service.destroy_node()
+      rclpy.shutdown()
+
+  if __name__ == '__main__':
+      try:
+          main()
+      except KeyboardInterrupt():
+          print("Finished...")
+  ```
+
+  Modify the file setup.py and add the followings lines:
+
+  ```bash
+  entry_points={
+      'console_scripts': [
+          'action_server = my_action.action_server:main',
+          'action_client = my_action.action_client:main',
+      ],
+  },
+  ```
+  
+  The final setup.py file should resamble to:
+  
+  ```bash
+  from setuptools import setup
+
+  package_name = 'my_action'
+
+  setup(
+      name=package_name,
+      version='0.0.0',
+      packages=[package_name],
+      data_files=[
+          ('share/ament_index/resource_index/packages',
+              ['resource/' + package_name]),
+          ('share/' + package_name, ['package.xml']),
+      ],
+      install_requires=['setuptools'],
+      zip_safe=True,
+      maintainer='labosmt',
+      maintainer_email='labosmt@todo.todo',
+      description='TODO: Package description',
+      license='TODO: License declaration',
+      tests_require=['pytest'],
+      entry_points={
+          'console_scripts': [
+              'action_server = my_action.action_server:main',
+              'action_client = my_action.action_client:main',
+          ],
+      },
+  )
+  ```   
+  
+  Now return in the root of the workspace and build the new package:
+  
+  ```bash
+  cd ../.. # Return in workspace root
+  
+  colcon build --packages-select my_action
+  ```
+  
+  To access the new package, don't forget to source the workspace!
+  
+  ```bash  
+  . install/setup.bash
+  ```
+  
+  Now open a new terminal and run your action client:
+
+  ```bash  
+  ros2 run my_action action_client
+  ```
+  
+  Now open a new terminal and run your action server:
+
+  ```bash  
+  ros2 run my_action action_server
+  ```
+  
+  TODO!!!!!!!!!!!!!
+  <p align="center">
+  <img src="Public/Image/.png" style="width: 80%;">
+  </p>
