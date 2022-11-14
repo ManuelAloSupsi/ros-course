@@ -42,7 +42,7 @@ Before the course it would be preferable to perform the following steps:
 
   Open PowerShell with administrator privileges and run the command:
   ```bash
-  wsl --intall
+  wsl --install
   ```
   Restart your computer to finish the WSL installation on Windows.
 
