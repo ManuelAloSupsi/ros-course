@@ -35,7 +35,7 @@ Before the course it would be preferable to perform the following steps:
 
   <a name="wls"/>
   
-  ## Install WLS
+  ## Install WSL
 
   Open PowerShell with administrator privileges and run the command:
   ```bash
