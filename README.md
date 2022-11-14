@@ -320,9 +320,8 @@ Below are three different methods for doing this.
   
   To stop it press "Ctrl+C"
   
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/Twist_total.png" style="width: 80%;">
   </p>
   
   To move the turtle just once, add '--once' to the command in terminal:
@@ -330,6 +329,9 @@ Below are three different methods for doing this.
   ```bash  
   ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}" --once
   ```
+  <p align="center">
+  <img src="Public/Image/Twist.png" style="width: 80%;">
+  </p>
   
   There is another type of message you can sent: the service type. At the moment let's just ignore what a servie message or a topic message are. This will be explaned later.
   To see the list of possible command (service type) type the following line in a new terminal:
@@ -373,12 +375,10 @@ Below are three different methods for doing this.
   ```bash  
   ros2 service call /spawn turtlesim/srv/Spawn '{x: 3, y: 2, theta: 0.0, name: "HappyTurtle"}'
   ```
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/Spawn_from_terminal.png" style="width: 80%;">
   </p>
-  
-  
+    
   Finally, the last message type is called 'action'. As the last command, let's just focus on how to use it.
   
   To see the action list type:
@@ -395,9 +395,8 @@ Below are three different methods for doing this.
   
   --feedback is an optional parameter to display feedback during execution
   
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/RotateAbsolute.png" style="width: 80%;">
   </p>
 
   <a name="workspace"/>
@@ -811,9 +810,9 @@ Below are three different methods for doing this.
   ros2 run my_topic talker
   ```
   
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/Topic_publisher.png" style="width: 80%;">
+  <img src="Public/Image/Topic_subscriber.png" style="width: 80%;">
   </p>
   
   <a name="TopicAd"/>
@@ -873,9 +872,9 @@ Below are three different methods for doing this.
   
   <b>Don't forget to source your publish terminal before start!</b>
   
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/Topic_pub_listener.png" style="width: 80%;">
+  <img src="Public/Image/Topic_pub.png" style="width: 80%;">
   </p>
       
   <a name="SerCli"/>
@@ -1120,7 +1119,6 @@ Below are three different methods for doing this.
           self.req.b = 2
           self.future = self.cli.call_async(self.req)
 
-
   def main(args=None):
       rclpy.init(args=args)
 
@@ -1258,9 +1256,9 @@ Below are three different methods for doing this.
   ros2 run my_service service
   ```
   
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/Service_server.png" style="width: 80%;">
+  <img src="Public/Image/Service_client.png" style="width: 80%;">
   </p>
   
   <a name="ServiceTerminal"/>
@@ -1305,9 +1303,9 @@ Below are three different methods for doing this.
   
   <b>Don't forget to source your publish terminal before start!</b>
   
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/Service_call_server.png" style="width: 80%;">
+  <img src="Public/Image/Service_call.png" style="width: 80%;">
   </p>
   
   <a name="Action"/>
@@ -1741,9 +1739,9 @@ Below are three different methods for doing this.
   ros2 run my_action action_server
   ```
   
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/Action_server.png" style="width: 80%;">
+  <img src="Public/Image/Action_client.png" style="width: 80%;">
   </p>
   
   <a name="ActionTerminal"/>
@@ -1788,7 +1786,7 @@ Below are three different methods for doing this.
   
   <b>Don't forget to source your publish terminal before start!</b>
   
-  TODO!!!!!!!!!!!!!
   <p align="center">
-  <img src="Public/Image/.png" style="width: 80%;">
+  <img src="Public/Image/Send_goal_server.png" style="width: 80%;">
+  <img src="Public/Image/Send_goal.png" style="width: 80%;">
   </p>
