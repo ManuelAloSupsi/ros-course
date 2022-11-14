@@ -17,9 +17,12 @@
       * [Create interface](#TopicInterface)
       * [Create topic](#Topic)
       * [Create advanced topic](#TopicAd)
-    * [Service Server - Service Client](#service)  
-    * [Action Server - Action Client](#action)  
-
+    * [Service Server - Service Client](#SerCli)
+      * [Create interface](#ServiceInterface)
+      * [Create service](#Service)
+    * [Action Server - Action Client](#Action)
+      * [Create interface](#ActionInterface)
+      * [Create action](#ActionSerCli)
   
 <a name="homework"/>
 
@@ -425,7 +428,7 @@ Below are three different methods for doing this.
   
   ## Publisher - Subscriber
   
-  We want now to create one simple code that can execute some task by itself.
+  We want now to create one simple code that can display or treate received values.
   Let's create a system called 'publisher-subscriber'.
   The publisher will send some numbers and the subscriber will read and display them on its terminal.
   
@@ -493,7 +496,7 @@ Below are three different methods for doing this.
   find_package(rosidl_default_generators REQUIRED)
   
   rosidl_generate_interfaces(${PROJECT_NAME}
-    "msg/Sfera.msg"
+    "msg/Numero.msg"
   )
   ```
   Your CMakeLists.txt file should resamble to this:
@@ -810,15 +813,200 @@ Below are three different methods for doing this.
   
   Create a new topic named 'my_advanced_topic' that use the interface 'topic_messages' which publish two numbers.
   
-  <a name="service"/>
+  <a name="SerCli"/>
   
   ## Service Server - Service Client
   
-  <a name="action"/>
+  We created a publisher subscriber that show one or more values transmitted. Now we want to add a little step and create a simple code that can execute some task by itself. In this case we want to send the request to sum two numbers and get the result went the computation is done.
+  Let's create a system called 'Service'.
+  The service client will send some numbers and the service server will send back the sum.
+  
+  <a name="ServiceInterface"/>
+  
+  ## Create interface
+  
+  First you will need a interface which define the message structure.
+  
+  It's then time to create a fresh new interface package to work with.
+  
+  Open a new terminal, <b> source the workspace!</b> and type:
+  
+  ```bash 
+  cd src
+  ros2 pkg create --build-type ament_cmake service_message
+  ```
+  
+  Your interface name is then 'service_message'.
+  
+  This command will create a directory as shown here:
+  
+  ```bash
+  service_message
+    ├── include
+    ├── src
+    ├── CMakeLists.txt
+    └── package.xml
+  ```
+  Enter in the package and create a new directory 'srv':
+  
+  ```bash 
+  cd service_message
+  mkdir srv
+  ``` 
+  
+  Enter in the 'srv' directory and create a file named 'Somma.srv'. This will contain your structure.
+  
+  ```bash 
+  cd srv
+  cat > 'Somma.srv'
+  int64 a
+  int64 b
+  ---
+  int64 somma
+  
+  # Press Ctrl+D to save and close
+  # Or press Ctrl+S to save
+  # and then Cltr+X to exit the file
+  ``` 
+  Your package will now have those directory:
+  
+  ```bash
+  service_message
+    ├── include
+    ├── src
+    ├── srv
+    ├── CMakeLists.txt
+    └── package.xml
+  ```
+  
+  You are almost done!
+  
+  You have to modify the file CMackeLists.txt to add the required dependencies.
+  Add the following lines in the CMackeLists.txt file:
+  
+  ```bash
+  find_package(rosidl_default_generators REQUIRED)
+  
+  rosidl_generate_interfaces(${PROJECT_NAME}
+    "srv/Somma.srv"
+  )
+  ```
+  Your CMakeLists.txt file should resamble to this:
+  
+  ```bash
+  cmake_minimum_required(VERSION 3.8)
+  project(service_message)
+
+  if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    add_compile_options(-Wall -Wextra -Wpedantic)
+  endif()
+
+  # find dependencies
+  find_package(ament_cmake REQUIRED)
+  # uncomment the following section in order to fill in
+  # further dependencies manually.
+  # find_package(<dependency> REQUIRED)
+
+  find_package(rosidl_default_generators REQUIRED)
+
+  rosidl_generate_interfaces(${PROJECT_NAME}
+    "srv/Somma.srv"
+  )
+
+  if(BUILD_TESTING)
+    find_package(ament_lint_auto REQUIRED)
+    # the following line skips the linter which checks for copyrights
+    # uncomment the line when a copyright and license is not present in all source files
+    #set(ament_cmake_copyright_FOUND TRUE)
+    # the following line skips cpplint (only works in a git repo)
+    # uncomment the line when this package is not in a git repo
+    #set(ament_cmake_cpplint_FOUND TRUE)
+    ament_lint_auto_find_test_dependencies()
+  endif()
+
+  ament_package()
+  ```
+  Now you need to modify the package.xml file.
+  
+  Add those lines in the package.xml file:
+  
+  ```bash
+  <build_depend>rosidl_default_generators</build_depend>
+  
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  
+  <member_of_group>rosidl_interface_packages</member_of_group>
+  ```
+  
+  Your packages.xml file should resamble to this:
+  
+  ```bash
+  <?xml version="1.0"?>
+  <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+  <package format="3">
+    <name>service_message</name>
+    <version>0.0.0</version>
+    <description>TODO: Package description</description>
+    <maintainer email="labosmt@todo.todo">labosmt</maintainer>
+    <license>TODO: License declaration</license>
+
+    <buildtool_depend>ament_cmake</buildtool_depend>
+
+    <test_depend>ament_lint_auto</test_depend>
+    <test_depend>ament_lint_common</test_depend>
+
+    <export>
+      <build_type>ament_cmake</build_type>
+    </export>
+
+    <build_depend>rosidl_default_generators</build_depend>
+
+    <exec_depend>rosidl_default_runtime</exec_depend>
+
+    <member_of_group>rosidl_interface_packages</member_of_group>
+  </package>
+  ```
+  The interface is ready to be compiled and used!
+  
+  To compile the package in the root of the workspace and type:
+  
+  ```bash
+  colcon build --packages-select service_message
+  ```
+  To access the new interface, don't forget to source the workspace!
+  
+  ```bash  
+  . install/setup.bash
+  ```
+  
+  To verify that the interface creation was successful type:
+  
+  ```bash  
+  ros2 interface show service_message/srv/Somma
+  ```
+  
+  Should return this message:
+  
+  ```bash  
+  int64 a
+  int64 b
+  ---
+  int64 somma
+  ```
+  
+  <a name="Service"/>
+  
+  ## Create service
+  
+  <a name="Action"/>
   
   ## Action Server - Action Client
-
-
-    
-    
+  
+  <a name="ActionInterface"/>
+  
+  ## Create action
+  
+  <a name="ActionSerCli"/>
+  
+  ## Create action
   
