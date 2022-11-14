@@ -796,13 +796,15 @@ Below are three different methods for doing this.
   
   Now open a new terminal and run your topic subscriber:
 
-  ```bash  
+  ```bash
+  . install/setup.bash
   ros2 run my_topic listener
   ```
   
   Now open a new terminal and run your topic publisher:
 
   ```bash  
+  . install/setup.bash
   ros2 run my_topic talker
   ```
   
