@@ -100,16 +100,17 @@ Before the course it would be preferable to perform the following steps:
   The <b> Run a new container</b> windows appears. Expand the <b>Optional settings</b> menu and compile it as follows:
   
   * <b>Container name</b>: RosCourse
-  * <b>Host port</b>: 8080 
+  * <b>Host port for 22/tcp</b>: 2222 
+  * <b>Host port for 8080/tcp</b>: 8080 
 
   and the press run
   <p align="center">
-  <img src="Public/Image/ImageInstant.png" style="width: 80%;">
+  <img src="Public/Image/instanzaImagine.png" style="width: 80%;">
   </p>
   
   Now the image has been instantiate in a container and is in execution :horse_racing:
   <p align="center">
-  <img src="Public/Image/contInst.png" style="width: 80%;">
+  <img src="Public/Image/instanzaImagine2.png" style="width: 80%;">
   </p>
  
   If it doesn't work? :tired_face: You can try to pull again the image and instantiate it by using the following command:
@@ -125,6 +126,19 @@ Before the course it would be preferable to perform the following steps:
   </p>
   
   <div align="center"><h3>:muscle::muscle:Now you are ready for the course:muscle::muscle:</h3></div>
+  
+  ### MobaXterm
+  <p align="center">
+  <img src="Public/Image/instanzaImagine3.png" style="width: 80%;">
+  </p>
+  
+  <p align="center">
+  <img src="Public/Image/instanzaImagine4.png" style="width: 80%;">
+  </p>
+  
+  <p align="center">
+  <img src="Public/Image/instanzaImagine5.png" style="width: 80%;">
+  </p>
   
 <a name="course"/>
 
