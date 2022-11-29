@@ -77,9 +77,15 @@ Before the course it would be preferable to perform the following steps:
   <a name="image"/>
   
   ## Download of ros-course image
-  Launch the PowerShell as administrator and execute the following command to pull the image from the Docker Hub
+  Launch the PowerShell as administrator and execute one of the following command to pull the image from the Docker Hub.
+  
+  For the ssh vertion:
   ```bash
-  docker pull manuelalosupsi/ros-course
+  docker pull manuelalosupsi/ros-course:ssh
+  ```
+  For the vnc vertion:
+  ```bash
+  docker pull manuelalosupsi/ros-course:vnc
   ```
   
   <p align="center">
