@@ -1,4 +1,4 @@
-# Docker file for ROS2 and microROS with freertos on ESP32
+# Docker file for code generation in NuttX
 
 ## Generation
 
