@@ -1,0 +1,28 @@
+version: '3'
+services:
+  nuttx:
+    container_name: nuttx
+    image: nuttx:latest
+    volumes:
+    - /dev:/dev
+    - $XAUTHORITY:/tmp/.XAuthority
+    - /home/bucher/ToDo/extradisk/ros_ws:/mnt
+    environment:
+    - DISPLAY
+    - XAUTHORITY=/tmp/.XAuthority
+    network_mode: host
+    restart: always
+    privileged: true
+  microros:
+    container_name: microros
+    image: microros:latest
+    volumes:
+    - /dev:/dev
+    - $XAUTHORITY:/tmp/.XAuthority
+    - /home/bucher/ToDo/extradisk/ros_ws:/mnt
+    environment:
+    - DISPLAY
+    - XAUTHORITY=/tmp/.XAuthority
+    network_mode: host
+    restart: always
+    privileged: true
