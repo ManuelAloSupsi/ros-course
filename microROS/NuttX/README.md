@@ -14,7 +14,13 @@ apt install kconfig-frontends
 apt install gcc-arm-none-eabi binutils-arm-none-eabi
 apt-get install openocd
 apt-get install tio
+apt-get install python3-pip
 ```
+Install the files required for microROS
+```  
+pip install catkin_pkg lark-parser empy colcon-common-extensions
+```
+
 Get the NuttX files from GIT
 ```
 cd NUTTX
