@@ -1,6 +1,6 @@
 # Installation under NuttX
 
-It is possible to generate a Docker image specific to generate the microROS applications for microROS on NuttX boards. In this case it is possible to skip the next section.
+It is possible to generate a Docker image specific to generate the microROS applications on NuttX boards. In this case it is possible to skip the next section.
 
 ## Install NuttX on your PC Linux
 
@@ -37,6 +37,18 @@ cd apps/microros/micro_ros_lib
 cp colcon.meta_udp colcon.meta
 cd ../../..
 ```
+The colcon.meta filr must be edited to fit the address of your ROS2 PC
+```
+       "rmw_microxrcedds": {
+            "cmake-args": [
+                "-DRMW_UXRCE_TRANSPORT=udp",
+                "-DRMW_UXRCE_DEFAULT_UDP_IP=10.17.11.31",
+                "-DRMW_UXRCE_DEFAULT_UDP_PORT=8888"
+            ]
+        },
+        "tracetools": {
+```
+
 We can configure our system
 ```
 cd nuttx;
