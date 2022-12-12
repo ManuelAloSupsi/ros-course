@@ -103,7 +103,56 @@ nsh> publisher
 And in the ROS2 docker have to launch
 ```
 ros2 run my_topic listener_nuttx
+
 ```
+
+## Devices available on the nucleo-F746ZG board
+
+These are the devices already defined in the card:
+
+```nsh> ls /dev
+/dev:
+ adc0
+ can0
+ console
+ gpio0
+ gpio1
+ gpio10
+ gpio11
+ gpio12
+ gpio2
+ gpio3
+ gpio4
+ gpio5
+ gpio6
+ gpio7
+ gpio8
+ gpio9
+ null
+ ptmx
+ pwm0
+ qe2
+ qe3
+ telnet
+ ttyS0
+nsh> 
+
+```
+
+The GPIO are devided between input and output devices.
+
+  * 4 gpio inputs
+  * 8 gpio outputs
+  * 1 gpio int input
+
+The 2 PWM (/dev/pwm0) has 2 channels with complementary signal.
+
+Other devices:
+
+  * 4 ADC
+  * 2 encoders
+  * 1 CAN
+
 
 
 
