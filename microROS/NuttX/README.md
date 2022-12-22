@@ -145,7 +145,7 @@ The GPIO are devided between input and output devices.
   * 8 gpio outputs
   * 1 gpio int input
 
-The 2 PWM (/dev/pwm0) has 2 channels with complementary signal.
+The 2 PWM (/dev/pwm0) have 2 channels with complementary signal.
 
 Other devices:
 
