@@ -80,7 +80,7 @@ micro_ros_src/src: micro_ros_dev/install
     touch src/rclc/rclc_examples/COLCON_IGNORE; \
 	touch src/rcl/rcl_yaml_param_parser/COLCON_IGNORE; \
 	cp -rf ../extra_packages src/extra_packages || :;
-	cp -dpR /home/bucher/ToDo/extradisk/ros_ws/bhr_interfaces  micro_ros_src/src/
+	cp -dpR ../bhr_interfaces  micro_ros_src/src/
 
 micro_ros_src/install: toolchain.cmake micro_ros_dev/install micro_ros_src/src
 	cd micro_ros_src; \
