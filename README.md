@@ -231,7 +231,7 @@ Below are three different methods for doing this.
 
   Plugins > Services > Service Caller
 
-  To access the turtlesim control do not forget to refresh six services.
+  To access the turtlesim control do not forget to refresh the services.
   
   <p align="center">
   <img src="Public/Image/rqt.PNG" style="width: 80%;">
