@@ -16,7 +16,6 @@
     * [Publisher - Subscriber](#pub)  
       * [Create interface](#TopicInterface)
       * [Create topic](#Topic)
-      * [Create advanced topic](#TopicAd)
       * [Publish topic from terminal](#TopicTerminal)
     * [Service Server - Service Client](#SerCli)
       * [Create interface](#ServiceInterface)
@@ -837,21 +836,6 @@ Below are three different methods for doing this.
   <img src="Public/Image/Topic_publisher.png" style="width: 80%;">
   </p>
   
-  <a name="TopicAd"/>
-  
-  ### Create advanced topic
-  
-  Now you can try to create from strach a new topic and a new interface.
-  
-  Create an interface named 'topic_messages' with this structure:
-  
-  ```bash  
-  int64 a
-  int64 b
-  ```
-  
-  Create a new topic named 'my_advanced_topic' that use the interface 'topic_messages' which publish two numbers.
-  
   <a name="TopicTerminal"/>
   
   ## Publish topic from terminal
@@ -898,6 +882,21 @@ Below are three different methods for doing this.
   <img src="Public/Image/Topic_pub_listener.png" style="width: 80%;">
   <img src="Public/Image/Topic_pub.png" style="width: 80%;">
   </p>
+  
+  <a name="TopicAd"/>
+  
+  ### Create advanced topic
+  
+  Now you can try to create from strach a new topic and a new interface.
+  
+  Create an interface named 'topic_messages' with this structure:
+  
+  ```bash  
+  int64 a
+  int64 b
+  ```
+  
+  Create a new topic named 'my_advanced_topic' that use the interface 'topic_messages' which publish two numbers.
       
   <a name="SerCli"/>
   
